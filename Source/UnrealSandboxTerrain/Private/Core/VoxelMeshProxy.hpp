@@ -13,6 +13,7 @@
 #include "DynamicMeshBuilder.h"
 #include "SceneManagement.h"
 #include "Runtime/Launch/Resources/Version.h"
+#include "MaterialDomain.h"
 
 
 /** Resource array to pass  */
@@ -37,7 +38,7 @@ class TMeshVertexBuffer : public FVertexBuffer {
 public:
 	TArray<FDynamicMeshVertex> Vertices;
 
-	virtual void InitRHI() override {
+	virtual void InitRHI(FRHICommandListBase& RHICmdList) override {
 		const uint32 SizeInBytes = Vertices.Num() * sizeof(FDynamicMeshVertex);
 
 		TMeshVertexResourceArray ResourceArray(Vertices.GetData(), SizeInBytes);
